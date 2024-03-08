@@ -1,5 +1,3 @@
-# 123
-
 import numpy as np
 
 c1 = complex(input("c1: "))
