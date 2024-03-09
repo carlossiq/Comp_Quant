@@ -1,63 +1,18 @@
 import numpy as np
 import matplotlib.pyplot as plt
+import cmath
 
-
-def max_modulo(a, b):
-    m1 = abs(a)
-    m2 = abs(b)
-    m3 = abs(a + b)
-    m4 = abs(a - b)
-    i = 0
-    lista = [m1, m2, m3, m4]
-    max = m1
-    for i in range(len(lista) - 1):
-        if lista[i] < lista[i + 1]:
-            max = lista[i + 1]
-
-    return max
-
-
-def ponto(z, cor):
-    # propriedades
-    real_z = z.real
-    im_z = z.imag
-    # arrays
-    x1 = [0, real_z]
-    y1 = [0, im_z]
-    x2 = [real_z, real_z]
-    y2 = [0, im_z]
-    x3 = [0, real_z]
-    y3 = [im_z, im_z]
-    # gráfico
-    plt.scatter(real_z, im_z, color=cor, marker="o")
-    plt.plot(x1, y1, color="black", linewidth=(1))
-    plt.plot(x2, y2, color="black", linewidth=(1), linestyle="dashed")
-    plt.plot(x3, y3, color="black", linewidth=(1), linestyle="dashed")
-
-
-# main
-# numeros complexos
+# numeros
 z1 = complex(2, -1)
 z2 = complex(1, 1)
 # operações
 z3 = z1 + z2
 z4 = z1 - z2
-# módulo máximo
-modulo = max_modulo(z1, z2) + 1
-# grafico
-plt.figure(figsize=(4, 4))
-plt.axhline(0, color="black", linewidth=0.5)
-plt.axvline(0, color="black", linewidth=0.5)
-ponto(z1, "red")
-ponto(z2, "blue")
-ponto(z3, "green")
-ponto(z4, "purple")
-# labels
-plt.title("Plano cartesiano")
-plt.xlabel("Reais")
-plt.ylabel("Imaginários")
-# Set axis limits
-plt.xlim([-modulo, modulo])
-plt.ylim([-modulo, modulo])
-plt.grid(True)
+# inicio do gráfico
+fig, ax = plt.subplots(subplot_kw={"projection": "polar"}, figsize=(6, 6))
+ax.plot(cmath.phase(z1), abs(z1), marker="o", markersize=5, color="red")
+ax.plot(cmath.phase(z2), abs(z2), marker="o", markersize=5, color="red")
+ax.plot(cmath.phase(z3), abs(z3), marker="o", markersize=5, color="red")
+ax.plot(cmath.phase(z4), abs(z4), marker="o", markersize=5, color="red")
+
 plt.show()

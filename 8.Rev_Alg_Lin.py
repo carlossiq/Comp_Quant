@@ -43,11 +43,25 @@ z2 = complex(1, 1)
 z3 = z1 + z2
 z4 = z1 - z2
 # módulo máximo
-modulo = max_modulo(z1, z2) + 1
+tamanho = max_modulo(z1, z2) + 1
 # grafico
-plt.figure(figsize=(4, 4))
-plt.axhline(0, color="black", linewidth=0.5)
-plt.axvline(0, color="black", linewidth=0.5)
+params = {
+    "axes.labelsize": 12,
+    "axes.titlesize": 12,
+    "axes.spines.top": False,
+    "axes.spines.right": False,
+    "xtick.labelsize": 12,
+    "ytick.labelsize": 12,
+    "figure.autolayout": True,
+    "figure.facecolor": "white",
+    "figure.titlesize": 16,
+    "figure.figsize": (6, 6),
+    "legend.shadow": False,
+    "legend.fontsize": 10,
+    "lines.linewidth": 2.0,
+}
+
+plt.rcParams.update(params)
 ponto(z1, "red")
 ponto(z2, "blue")
 ponto(z3, "green")
@@ -57,7 +71,7 @@ plt.title("Plano cartesiano")
 plt.xlabel("Reais")
 plt.ylabel("Imaginários")
 # Set axis limits
-plt.xlim([-modulo, modulo])
-plt.ylim([-modulo, modulo])
+plt.xlim([-tamanho, tamanho])
+plt.ylim([-tamanho, tamanho])
 plt.grid(True)
 plt.show()
