@@ -22,7 +22,6 @@ class Matriz:
             for row in range(n):
                 linha = line(n, row)
                 matrix += [linha]
-                print(matrix)
             return matrix
 
         matrix = set_vectors(n)
@@ -33,8 +32,20 @@ class Matriz:
         for row in range(n):
             print(matrix[row])
 
+    def sum(matriz1, matriz2):
+        row = col = 0
+        soma = matriz1
+        for row in range(n):
+            for col in range(n):
+                soma[row][col] += matriz2[row][col]
+        return soma
+
 
 # main
 n = Matriz.get_n()
-matriz = Matriz.set(n)
-Matriz.show(n, matriz)
+m1 = Matriz.set(n)
+m2 = Matriz.set(n)
+Matriz.show(n, m1)
+Matriz.show(n, m2)
+m = Matriz.sum(m1, m2)
+Matriz.show(n, m)
