@@ -1,5 +1,5 @@
+# converter coordenadas
 import numpy as np
-import math
 
 
 def converter(x, y):

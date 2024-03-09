@@ -1,5 +1,7 @@
+# multiplicação de um complexo pelo imaginario formado por sua parte imaginaria
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 from matplotlib.ticker import MultipleLocator
 from matplotlib.patches import Arc
 
@@ -81,36 +83,13 @@ class Complexo:
             Complexo.mostrar_angulo(z, ax)
 
 
-def max_modulo(z1, z2):
-    m1 = abs(z1)
-    m2 = abs(z2)
-    m3 = abs(z1 + z2)
-    m4 = abs(z1 - z2)
-    i = 0
-    lista = [m1, m2, m3, m4]
-    max = m1
-    for i in range(len(lista) - 1):
-        if lista[i] < lista[i + 1]:
-            max = lista[i + 1]
-
-    return max
+def funcao_i0(z):
+    z *= complex(0, z.imag)
+    tamanho = abs(z) + 1.5
+    fig, ax = plt.subplots()
+    Complexo.plano_gauss(ax, fig, tamanho)
+    Complexo.plotar_complexo(z, ax, 0, 1, 1)
+    plt.show()
 
 
-# numeros
-z1 = complex(2, -1)
-z2 = complex(1, 1)
-# operações
-z3 = z1 + z2
-z4 = z1 - z2
-# inicio do gráfico
-tamanho = max_modulo(z1, z2) + 1.5
-fig, ax = plt.subplots()
-# plano
-Complexo.plano_gauss(ax, fig, tamanho)
-# argumentos: angulo, vetor-componente, círculo
-Complexo.plotar_complexo(z1, ax, 0, 1, 0)
-Complexo.plotar_complexo(z2, ax, 0, 1, 0)
-Complexo.plotar_complexo(z3, ax, 0, 1, 0)
-Complexo.plotar_complexo(z4, ax, 0, 1, 0)
-# plotar
-plt.show()
+funcao_i0(1 + 2j)

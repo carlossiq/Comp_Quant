@@ -1,5 +1,6 @@
 import matplotlib.pyplot as plt
 import math
+import numpy as np
 from matplotlib.ticker import MultipleLocator
 from matplotlib.patches import Arc
 
@@ -11,10 +12,10 @@ class Complexo:
         ax.spines["bottom"].set_position("center")
         ax.spines["left"].set_position("center")
         ax.spines["right"].set_color("none")
-        ax.xaxis.set_ticks_position("bottom")
-        ax.yaxis.set_ticks_position("left")
-        ax.xaxis.set_major_locator(MultipleLocator(1))
-        ax.yaxis.set_major_locator(MultipleLocator(1))
+        # ax.xaxis.set_ticks_position("bottom")
+        # ax.yaxis.set_ticks_position("left")
+        # ax.xaxis.set_major_locator(MultipleLocator(1))
+        # ax.yaxis.set_major_locator(MultipleLocator(1))
         ax.grid(which="both", color="grey", linewidth=1, linestyle="-", alpha=0.2)
         # legendas
         ax.set_xlabel("Re", loc="right")
@@ -81,36 +82,27 @@ class Complexo:
             Complexo.mostrar_angulo(z, ax)
 
 
-def max_modulo(z1, z2):
-    m1 = abs(z1)
-    m2 = abs(z2)
-    m3 = abs(z1 + z2)
-    m4 = abs(z1 - z2)
+def lista_soma_imag(z, n):
+    lista = [0]
     i = 0
-    lista = [m1, m2, m3, m4]
-    max = m1
-    for i in range(len(lista) - 1):
-        if lista[i] < lista[i + 1]:
-            max = lista[i + 1]
+    for i in range(n - 1):
+        lista += [0]
+    i = 0
+    for i in range(n):
+        lista[i] = z
+        z += complex(0, z.imag)
+    return lista
 
-    return max
 
-
-# numeros
-z1 = complex(2, -1)
-z2 = complex(1, 1)
-# operações
-z3 = z1 + z2
-z4 = z1 - z2
-# inicio do gráfico
-tamanho = max_modulo(z1, z2) + 1.5
+z = complex(5, 5)
+n = 10
+lista = lista_soma_imag(z, n)
+# print(lista)
+tamanho = abs(lista[n - 1]) + 1.5
 fig, ax = plt.subplots()
-# plano
 Complexo.plano_gauss(ax, fig, tamanho)
-# argumentos: angulo, vetor-componente, círculo
-Complexo.plotar_complexo(z1, ax, 0, 1, 0)
-Complexo.plotar_complexo(z2, ax, 0, 1, 0)
-Complexo.plotar_complexo(z3, ax, 0, 1, 0)
-Complexo.plotar_complexo(z4, ax, 0, 1, 0)
-# plotar
+i = 0
+for i in range(n):
+    Complexo.plotar_complexo(lista[i], ax, 0, 0, 0)
 plt.show()
+print(lista)
