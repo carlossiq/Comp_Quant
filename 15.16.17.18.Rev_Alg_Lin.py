@@ -3,6 +3,7 @@
 # transposta, conjugada, dagger
 # produto cartesiano
 # produto interno
+# traço
 
 import numpy as np
 
@@ -77,6 +78,11 @@ class Matriz:
     def prod(m1, m2):
         m = m1 @ np.conjugate(m2)
         return m
+
+    # traço
+    def traço(m):
+        a = np.ndarray.trace(m)
+        return a
 
 
 # main

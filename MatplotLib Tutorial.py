@@ -21,3 +21,10 @@ axes.add_artist(Drawing_uncolored_circle)
 plt.title("Circle")
 
 plt.show()
+
+np.transpose()
+np.inner()
+np.dot()
+np.ndarray.trace()
+np.linalg.det()
+np.linalg.inv()
